@@ -1,6 +1,7 @@
 package com.rashm1n.controller;
 
 import com.google.gson.Gson;
+import com.rashm1n.model.Parent;
 import com.rashm1n.model.Student;
 import com.rashm1n.model.Teacher;
 
@@ -39,3 +40,19 @@ class TeacherController extends HttpServlet {
         printWriter.flush();
     }
 }
+
+@WebServlet("/parent")
+class ParentController extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Parent parent = new Parent("amma", "jupiter", 59);
+        String json = new Gson().toJson(parent);
+        PrintWriter printWriter = resp.getWriter();
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        printWriter.print(json);
+        printWriter.flush();
+    }
+}
+
+
